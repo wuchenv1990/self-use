@@ -1,2 +1,2 @@
 # self-use
-private: nothing, just for study (demo, test, etc.)
+private: for study (demo, test, etc.)

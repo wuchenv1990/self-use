@@ -1,18 +1,24 @@
 package com.wuchenyv1990.service;
 
 import com.wuchenyv1990.client.feign.AppFeignCli;
-import com.wuchenyv1990.service.itf.AppServiceItf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("feighAppService")
-public class FeighAppService implements AppServiceItf {
+@Service
+public class FeighAppService {
 
     @Autowired
     AppFeignCli appFeignCli;
 
-    @Override
     public String getInfo() {
         return appFeignCli.getInfo();
+    }
+
+    public String failCall() {
+        return appFeignCli.failCall();
+    }
+
+    public String error500() {
+        return appFeignCli.error500();
     }
 }

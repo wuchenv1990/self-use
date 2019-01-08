@@ -20,6 +20,11 @@ public class AppRibbonCli {
     @Qualifier("ribbonTemplate")
     RestTemplate ribbonTemplate;
 
+    //普通restTemplate
+    @Autowired
+    @Qualifier("restTemplate")
+    RestTemplate restTemplate;
+
     @Autowired
     LoadBalancerClient loadBalancer;
 
@@ -34,7 +39,7 @@ public class AppRibbonCli {
     public String getInfoByApi() {
         ServiceInstance instance = loadBalancer.choose(EUREKA_CLIENT);
         URI getInfoUri = URI.create(String.format("http://%s:%s/%s", instance.getHost(), instance.getPort(), URL_INFO));
-        return ribbonTemplate.getForObject(getInfoUri, String.class);
+        return restTemplate.getForObject(getInfoUri, String.class);
     }
 
 }

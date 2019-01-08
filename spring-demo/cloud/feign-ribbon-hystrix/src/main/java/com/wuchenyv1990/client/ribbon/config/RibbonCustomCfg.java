@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * custom ribbon config, has not used here
- * 来着官网配置样例
+ * 来自官网配置样例
  */
 //@Configuration
 //@RibbonClient(name = "ribbonClient", configuration = RibbonCliCfg.class) 要确保不被boot全局扫描的@Configuration

@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: b
+    active: a
   application:
     name: eureka-client
 

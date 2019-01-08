@@ -17,5 +17,9 @@ public class RibbonCfg {
         return new RestTemplate();
     }
 
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
 }

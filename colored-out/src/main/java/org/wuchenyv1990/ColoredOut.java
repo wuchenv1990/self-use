@@ -13,14 +13,14 @@ import java.util.function.Function;
  */
 public enum ColoredOut {
 
-    //
-    // 红色
-    //
+    /**
+     * 红色
+     */
     RED(str -> new Object[]{AnsiColor.RED, str}),
 
-    //
-    // 粗体绿色
-    //
+    /**
+     * 粗体绿色
+     */
     BOLD_GREEN(str -> new Object[]{AnsiColor.GREEN, AnsiStyle.BOLD, str});
 
     private Function<String, Object[]> elementsfunc;

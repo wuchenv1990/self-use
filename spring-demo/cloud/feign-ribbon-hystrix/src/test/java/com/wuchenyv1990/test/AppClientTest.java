@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Random;
 import java.util.stream.IntStream;
 
 @RunWith(SpringRunner.class)
@@ -33,7 +34,7 @@ public class AppClientTest {
     @Test
     public void test2() {
         IntStream.range(0, 4)
-                .forEach(it -> System.out.println("feign fail return : " + feighAppService.failCall()));
+                .forEach(it -> System.out.println("feign fail return : " + feighAppService.doFailCall()));
     }
 
     @Test
@@ -54,6 +55,17 @@ public class AppClientTest {
                 .forEach(it -> System.out.println("ribbon api return : " + ribbonAppService.getInfoByApi()));
     }
 
+    @Test
+    public void test6() {
+        IntStream.range(0, 4)
+                .forEach(it -> System.out.println("ribbon failCall return : " + ribbonAppService.doFailCall()));
+    }
+
+    @Test
+    public void test7() {
+        IntStream.range(0, 4)
+                .forEach(it -> System.out.println("ribbon failCall return : " + ribbonAppService.error500()));
+    }
 
 }
 

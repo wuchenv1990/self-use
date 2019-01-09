@@ -1,5 +1,6 @@
 package com.wuchenyv1990.client.ribbon;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.client.ServiceInstance;
@@ -16,6 +17,10 @@ public class AppRibbonCli {
 
     static private final String URL_INFO = "app/info";
 
+    static private final String URL_NULL = "app/nullPath";
+
+    static private final String URL_500 = "app/error500";
+
     @Autowired
     @Qualifier("ribbonTemplate")
     RestTemplate ribbonTemplate;
@@ -28,6 +33,7 @@ public class AppRibbonCli {
     @Autowired
     LoadBalancerClient loadBalancer;
 
+    @HystrixCommand(fallbackMethod = "fallbackMethod")
     public String getInfo() {
         return ribbonTemplate.getForObject(String.format("http://%s/%s", EUREKA_CLIENT, URL_INFO), String.class);
     }
@@ -36,10 +42,33 @@ public class AppRibbonCli {
      * 直接使用ribbon api
      * @return 返回结果
      */
+    @HystrixCommand(fallbackMethod = "fallbackMethod")
     public String getInfoByApi() {
         ServiceInstance instance = loadBalancer.choose(EUREKA_CLIENT);
         URI getInfoUri = URI.create(String.format("http://%s:%s/%s", instance.getHost(), instance.getPort(), URL_INFO));
         return restTemplate.getForObject(getInfoUri, String.class);
+    }
+
+    /**
+     * 没有对应路径，测试熔断
+     * @return String
+     */
+    @HystrixCommand(fallbackMethod = "fallbackMethod")
+    public String failCall() {
+        return ribbonTemplate.getForObject(String.format("http://%s/%s", EUREKA_CLIENT, URL_NULL), String.class);
+    }
+
+    /**
+     * code 500
+     * @return String
+     */
+    @HystrixCommand(fallbackMethod = "fallbackMethod")
+    public String error500() {
+        return ribbonTemplate.getForObject(String.format("http://%s/%s", EUREKA_CLIENT, URL_500), String.class);
+    }
+
+    protected String fallbackMethod() {
+        return "Ribbon's hystrix fallback";
     }
 
 }

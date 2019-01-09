@@ -16,19 +16,19 @@ public class AppFallbackFactory implements FallbackFactory<AppFeignCli> {
         return new AppFeignCli() {
             @Override
             public String getInfo() {
-                logger.error("feign call failed : ", throwable);
+                logger.error("feign call failed : " + throwable.getMessage());
                 return "Fallback info.";
             }
 
             @Override
             public String failCall() {
-                logger.error("feign call failed : ", throwable);
+                logger.error("feign call failed : " + throwable.getMessage());
                 return "Fallback info.";
             }
 
             @Override
             public String error500() {
-                logger.error("feign call failed : ", throwable);
+                logger.error("feign call failed : " + throwable.getMessage());
                 return "Info error 500";
             }
         };

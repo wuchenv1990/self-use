@@ -9,7 +9,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestControllerAdvice
 public class ExceptionAdvice extends ResponseEntityExceptionHandler {
 
-
     @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(AppException.class)
     public StateResult handleAppException(AppException appException) {

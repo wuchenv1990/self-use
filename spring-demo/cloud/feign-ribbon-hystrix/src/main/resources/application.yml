@@ -6,12 +6,15 @@ server:
   port: 8765
   eureka: 8761
 
-#打开feign的hystrix支持
+# test包中打开一个随机发请求线程，为dashboard提供数据
+rest:
+  invoke-simulator: ture
+# 打开feign的hystrix支持
 feign:
   hystrix:
     enabled: true
 
-#超时时间，否则由于懒加载第一次调用会失败 test1
+# 超时时间，否则由于懒加载第一次调用会失败 test1
 hystrix:
   command:
     default:
@@ -19,10 +22,20 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 5000
+
+# expose hystrix actuator endpoint, and 2 default
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - hystrix.stream
+        - info
+        - health
+
 eureka:
   instance:
     hostname: localhost
   client:
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.eureka}/eureka/
-

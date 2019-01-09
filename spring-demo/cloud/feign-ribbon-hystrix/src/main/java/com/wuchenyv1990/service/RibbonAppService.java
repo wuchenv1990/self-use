@@ -17,4 +17,13 @@ public class RibbonAppService {
     public String getInfoByApi() {
         return appRibbonCli.getInfoByApi();
     }
+
+    public String doFailCall() {
+        return appRibbonCli.failCall();
+    }
+
+    public String error500() {
+        return appRibbonCli.error500();
+    }
+
 }

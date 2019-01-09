@@ -14,7 +14,7 @@ public class FeighAppService {
         return appFeignCli.getInfo();
     }
 
-    public String failCall() {
+    public String doFailCall() {
         return appFeignCli.failCall();
     }
 

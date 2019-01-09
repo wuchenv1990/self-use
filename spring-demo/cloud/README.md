@@ -8,7 +8,7 @@ spring-cloud相关<br>
 应用作为eureka-client，即服务发布，通过rest提供api<br>
 全局异常抛出的500为测试feign熔断<br>
 ### 3、feign-ribbon-hystrix
-1）先后实现feign、ribbon客户端对[2]中eureka-client的调用<br>；
+1）先后实现feign、ribbon客户端对[2]中eureka-client的调用；<br>
 2）引入hystrix的feign、ribbon支持；<br>
 3）开启hystrixDashboard
 

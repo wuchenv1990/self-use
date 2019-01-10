@@ -5,6 +5,7 @@ import com.wuchenyv1990.service.itf.ServiceItf;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,9 +16,12 @@ import java.util.Random;
 @RequestMapping("app")
 public class ServiceController {
 
-    Logger logger = LoggerFactory.getLogger(ServiceController.class);
+    private Logger logger = LoggerFactory.getLogger(ServiceController.class);
 
-    Random r = new Random();
+    private Random r = new Random();
+
+    @Value("${spring.application.name}")
+    private String serviceName;
 
     @Autowired
     ServiceItf serviceItf;
@@ -35,5 +39,12 @@ public class ServiceController {
         }
         return "partly return succeed";
     }
+
+
+    @GetMapping("serviceName")
+    public String serviceName() {
+        return serviceName;
+    }
+
 
 }

@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 要转发的接口
+ */
 @RestController
 @RequestMapping("appCli")
 public class AppClientController {
@@ -41,8 +44,5 @@ public class AppClientController {
     public String feignFailCall() {
         return feighAppService.error500();
     }
-
-
-
 
 }

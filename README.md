@@ -1,2 +1,2 @@
 # self-use
-private: for study (demo, test, etc.)
+for study (demo, test, etc.)

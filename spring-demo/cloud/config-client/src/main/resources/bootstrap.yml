@@ -1,0 +1,12 @@
+server:
+  port: 8767
+
+spring:
+  application:
+    name: config-client #对应config-server的配置文件名
+  cloud:
+    config:
+      fail-fast: true
+      uri: http://localhost:8888/
+      label: master
+      profile: default

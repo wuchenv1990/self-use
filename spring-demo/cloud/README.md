@@ -13,6 +13,8 @@ spring-cloud相关<br>
 3. 开启hystrixDashboard
 ### 4、增加sleuth
 增加使用zipkin的sleuth工程，实现链路追踪，并为[2]和[3]添加sleuth支持
+### 5、增加config-server/client
+client的@Value注入从server中获取
 
 ## 附cloud与boot对应关系：
 Release Train | Boot Version

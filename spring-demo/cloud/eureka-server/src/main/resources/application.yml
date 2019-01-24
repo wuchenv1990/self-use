@@ -1,16 +1,53 @@
 spring:
+  profiles:
+    active: peer2
   application:
     name: eurka-server
 
 server:
   port: 8761
+  peer1: 8761
+  peer2: 8760
+  peer3: 8759
 
 eureka:
   instance:
     hostname: localhost
+#### 下面是standalone模式
+#  client:
+#    registerWithEureka: false
+#    fetchRegistry: false
+#    serviceUrl:
+#      #      defaultZone: http://${security.user.name}:${security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+#### standalone模式，只起一个eureka
+---
+spring:
+  profiles: peer1
+server:
+  port: 8761
+eureka:
   client:
-    registerWithEureka: false
-    fetchRegistry: false
-    serviceUrl:
-      #      defaultZone: http://${security.user.name}:${security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.peer2}/eureka/,
+        http://${eureka.instance.hostname}:${server.peer3}/eureka/
+---
+spring:
+  profiles: peer2
+server:
+  port: 8760
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.peer1}/eureka/,
+        http://${eureka.instance.hostname}:${server.peer3}/eureka/
+---
+spring:
+  profiles: peer3
+server:
+  port: 8759
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.peer1}/eureka/,
+        http://${eureka.instance.hostname}:${server.peer2}/eureka/

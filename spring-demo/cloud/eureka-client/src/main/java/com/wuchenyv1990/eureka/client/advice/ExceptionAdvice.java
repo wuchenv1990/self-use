@@ -1,5 +1,6 @@
 package com.wuchenyv1990.eureka.client.advice;
 
+import com.wuchenyv1990.eureka.client.common.model.StateResult;
 import com.wuchenyv1990.eureka.client.exception.AppException;
 import com.wuchenyv1990.eureka.client.exception.ServerException;
 import org.springframework.http.HttpStatus;
@@ -23,13 +24,4 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
         return new StateResult(serverException.getErrorCode(), serverException.getMessage());
     }
 
-    static class StateResult {
-        Integer errorCode;
-        String message;
-
-        public StateResult(Integer errorCode, String message) {
-            this.errorCode = errorCode;
-            this.message = message;
-        }
-    }
 }

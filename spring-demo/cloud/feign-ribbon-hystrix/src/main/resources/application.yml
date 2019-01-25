@@ -9,12 +9,22 @@ spring:
       probability: 1.0
     zipkin:
       base-url: http://localhost:9411/
-
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true #开启retry
 server:
   port: 8765
   peer1: 8761
   peer2: 8760
   peer3: 8759
+
+# 引入spring-retry，配置对eureka-client服务进行retry
+eureka-client:
+  ribbon:
+    MaxAutoReties: 3
+    MaxAutoRetiesNextServer: 2
+    retryableStatusCodes: 500,503
 
 # test包中打开一个随机发请求线程，为dashboard提供数据
 rest:
@@ -24,15 +34,18 @@ feign:
   hystrix:
     enabled: true
 
-# 超时时间，否则由于懒加载第一次调用会失败 test1
+# 超时时间，否则由于懒加载第一次调用会失败 test1，后改为ribbon的eager-load实现
 hystrix:
   command:
     default:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 5000
-
+            timeoutInMilliseconds: 1000
+ribbon:
+  eager-load:
+    enabled: true
+    clients: eureka-client
 # expose hystrix actuator endpoint, and 2 default
 management:
   endpoints:
@@ -51,3 +64,4 @@ eureka:
       defaultZone: http://${eureka.instance.hostname}:${server.peer1}/eureka/,
         http://${eureka.instance.hostname}:${server.peer2}/eureka/,
         http://${eureka.instance.hostname}:${server.peer3}/eureka/
+

@@ -12,6 +12,7 @@ spring-cloud相关<br>
 1. 先后实现feign、ribbon客户端对[2]中eureka-client的调用；
 2. 引入hystrix的feign、ribbon支持；
 3. 开启hystrixDashboard
+4. 引入spring-retry，ribbon开启重试
 ### 4、增加sleuth
 增加使用zipkin的sleuth工程，实现链路追踪，并为[2]和[3]添加sleuth支持
 ### 5、增加config-server/client

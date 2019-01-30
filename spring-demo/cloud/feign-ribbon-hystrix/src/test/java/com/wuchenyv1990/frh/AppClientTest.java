@@ -1,6 +1,5 @@
 package com.wuchenyv1990.frh;
 
-import com.wuchenyv1990.frh.AppCliMain;
 import com.wuchenyv1990.frh.service.FeighAppService;
 import com.wuchenyv1990.frh.service.RibbonAppService;
 import org.junit.Test;

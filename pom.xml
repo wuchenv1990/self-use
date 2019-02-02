@@ -15,6 +15,7 @@
     <modules>
         <module>spring-demo</module>
         <module>colored-out</module>
+        <module>dubbo-demo</module>
     </modules>
 
 </project>

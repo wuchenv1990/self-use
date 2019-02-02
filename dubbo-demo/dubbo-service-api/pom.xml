@@ -2,24 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>spring-demo</artifactId>
         <groupId>com.wuchenyv1990</groupId>
+        <artifactId>dubbo-demo</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>cloud</artifactId>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>eureka-server</module>
-        <module>eureka-client</module>
-        <module>feign-ribbon-hystrix</module>
-        <module>sleuth</module>
-        <module>config-server</module>
-        <module>config-client</module>
-    </modules>
+    <artifactId>dubbo-service-api</artifactId>
+    <description>provider interfaces</description>
 
 </project>

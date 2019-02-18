@@ -10,7 +10,10 @@ for study (demo, test, etc.)<br>
 │       ├──sleuth<br>
 │       ├──config-server<br>
 │       └──config-client<br>
-└── dubbo-demo (dubbo项目)<br>
-    ├── api (接口)<br>
-    ├── dubbo-provider-boot (dubbo-boot demo)<br>
-    └── dubbo-consumer<br>
+│<br>
+├── dubbo-demo (dubbo项目)<br>
+│   ├── api (接口)<br>
+│   ├── dubbo-provider-boot (dubbo-boot demo)<br>
+│   └── dubbo-consumer<br>
+│<br>
+└── mybatis-boot (mybatis的boot-starter demo)<br>

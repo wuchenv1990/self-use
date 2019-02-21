@@ -1,12 +1,12 @@
 package com.wuchenyv1990.mybatis.entity;
 
-import java.util.List;
+import java.util.Set;
 
 public class User {
 
     private long uid;
 
-    private List<Long> gids;
+    private Set<Long> gids;
 
     private String name;
 
@@ -20,11 +20,11 @@ public class User {
         this.uid = uid;
     }
 
-    public List<Long> getGids() {
+    public Set<Long> getGids() {
         return gids;
     }
 
-    public void setGids(List<Long> gids) {
+    public void setGids(Set<Long> gids) {
         this.gids = gids;
     }
 

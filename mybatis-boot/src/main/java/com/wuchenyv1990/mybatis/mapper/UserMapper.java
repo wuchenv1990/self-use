@@ -3,6 +3,9 @@ package com.wuchenyv1990.mybatis.mapper;
 import com.wuchenyv1990.mybatis.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.Map;
+import java.util.Set;
+
 @Mapper
 public interface UserMapper {
 
@@ -10,8 +13,8 @@ public interface UserMapper {
 
     void delUser(long uid);
 
-    User chUser(User user);
+    User chUserName(long uid, String name);
 
-    User getUser(long uid);
+    User getUser(Map<String, Object> params);
 
 }

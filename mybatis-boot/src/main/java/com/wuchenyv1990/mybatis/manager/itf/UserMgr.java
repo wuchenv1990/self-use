@@ -17,7 +17,7 @@ public interface UserMgr {
 
     void delUserById(long uid);
 
-    User chUserName(long uid, String name);
+    void chUser(User user);
 
     User getUser(long uid);
 

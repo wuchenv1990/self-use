@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 /**
  * user—group 关系表，多对多
  */
-@Mapper
+//@Mapper
 public interface UGMapper {
 
     void addUG(long uid, long gid);

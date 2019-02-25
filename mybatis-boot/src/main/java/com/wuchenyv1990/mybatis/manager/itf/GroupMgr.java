@@ -4,7 +4,7 @@ import com.wuchenyv1990.mybatis.entity.Group;
 
 public interface GroupMgr {
 
-    Group addGroup(Group group);
+    void addGroup(Group group);
 
     void delGroup(long gid);
 

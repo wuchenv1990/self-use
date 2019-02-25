@@ -53,7 +53,7 @@ public class UserMgrImpl implements UserMgr {
     @Override
     @Transactional
     public void delUser(User user) {
-        userMapper.delUser(user.getUid());
+        userMapper.delUser(Dict.set("uid", user.getUid()));
         user.getGids().forEach(gid -> ugMapper.rmUG(user.getUid(), gid));
     }
 
@@ -66,19 +66,20 @@ public class UserMgrImpl implements UserMgr {
 
     @Override
     @Transactional
-    public User chUserName(long uid, String name) {
-        return userMapper.chUserName(uid, name);
+    public void chUser(User user) {
+        userMapper.chUser(user);
     }
 
     @Override
     @Transactional(readOnly = true)
     public User getUser(long uid) {
-        return userMapper.getUser(Dict.set("uid", uid));
+        return userMapper.getUsers(Dict.set("uid", uid)).get(0);
     }
 
     @Override
     @Transactional(readOnly = true)
     public User getUser(String name) {
-        return userMapper.getUser(Dict.set("name", name));
+        return userMapper.getUsers(Dict.set("name", name)).get(0);
     }
+
 }

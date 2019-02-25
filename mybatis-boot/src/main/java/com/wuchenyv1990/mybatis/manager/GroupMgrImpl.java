@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
-@Service
+//@Service
 public class GroupMgrImpl implements GroupMgr {
 
     @Resource
@@ -20,8 +20,8 @@ public class GroupMgrImpl implements GroupMgr {
 
     @Override
     @Transactional
-    public Group addGroup(Group group) {
-        return groupMapper.addGroup(group);
+    public void addGroup(Group group) {
+        groupMapper.addGroup(group);
     }
 
     @Override

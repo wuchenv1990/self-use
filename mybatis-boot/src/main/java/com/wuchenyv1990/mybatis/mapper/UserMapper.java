@@ -3,18 +3,18 @@ package com.wuchenyv1990.mybatis.mapper;
 import com.wuchenyv1990.mybatis.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @Mapper
 public interface UserMapper {
 
-    User addUser(User user);
+    void addUser(User user);
 
-    void delUser(long uid);
+    void delUser(Map<String, ?> params);
 
-    User chUserName(long uid, String name);
+    void chUser(User user);
 
-    User getUser(Map<String, Object> params);
+    List<User> getUsers(Map<String, ?> params);
 
 }

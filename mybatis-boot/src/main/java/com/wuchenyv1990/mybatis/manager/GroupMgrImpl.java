@@ -4,12 +4,14 @@ import com.wuchenyv1990.mybatis.entity.Group;
 import com.wuchenyv1990.mybatis.manager.itf.GroupMgr;
 import com.wuchenyv1990.mybatis.manager.itf.UserMgr;
 import com.wuchenyv1990.mybatis.mapper.GroupMapper;
+import com.wuchenyv1990.mybatis.util.Dict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.Optional;
 
-//@Service
+@Service
 public class GroupMgrImpl implements GroupMgr {
 
     @Resource
@@ -27,18 +29,26 @@ public class GroupMgrImpl implements GroupMgr {
     @Override
     @Transactional
     public void delGroup(long gid) {
-
+        groupMapper.delGroup(gid);
     }
 
     @Override
     @Transactional
-    public Group modGroup(String name) {
-        return null;
+    public void modGroup(Group group) {
+        groupMapper.modGroup(group);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Group getGroup(long gid) {
-        return null;
+        return Optional.ofNullable(groupMapper.getGroups(Dict.set("gid", gid)).get(0))
+            .orElse(null);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Group getGroup(String name) {
+        return Optional.ofNullable(groupMapper.getGroups(Dict.set("name", name)).get(0))
+            .orElse(null);
     }
 }

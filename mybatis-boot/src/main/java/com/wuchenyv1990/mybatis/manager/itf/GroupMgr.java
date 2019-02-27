@@ -8,8 +8,10 @@ public interface GroupMgr {
 
     void delGroup(long gid);
 
-    Group modGroup(String name);
+    void modGroup(Group group);
 
     Group getGroup(long gid);
+
+    Group getGroup(String name);
 
 }

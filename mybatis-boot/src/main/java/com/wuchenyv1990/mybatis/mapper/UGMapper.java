@@ -1,15 +1,22 @@
 package com.wuchenyv1990.mybatis.mapper;
 
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * user—group 关系表，多对多
  */
-//@Mapper
+@Mapper
 public interface UGMapper {
 
+    @Insert("INSERT TBL_USER_TO_GROUP(uid, gid) VALUES (#{uid}, #{gid})")
     void addUG(long uid, long gid);
 
+    @Delete("DELETE FROM TBL_USER_TO_GROUP WHERE uid = #{uid} AND gid = #{gid}")
     void rmUG(long uid, long gid);
 
     /**
@@ -17,6 +24,7 @@ public interface UGMapper {
      *
      * @param uid uid
      */
+    @Delete("DELETE FROM TBL_USER_TO_GROUP WHERE uid = #{uid}")
     void rmUser(long uid);
 
     /**
@@ -24,5 +32,10 @@ public interface UGMapper {
      *
      * @param gid gid
      */
+    @Delete("DELETE FROM TBL_USER_TO_GROUP WHERE gid = #{gid}")
     void rmGroup(long gid);
+
+    @Select("SELECT gid FROM TBL_USER_TO_GROUP WHERE uid = #{uid}")
+    List<Long> getGids(long uid);
+
 }

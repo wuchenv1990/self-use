@@ -2,8 +2,8 @@ package com.wuchenyv1990.mybatis.manager;
 
 import com.wuchenyv1990.mybatis.entity.Group;
 import com.wuchenyv1990.mybatis.manager.itf.GroupMgr;
-import com.wuchenyv1990.mybatis.manager.itf.UserMgr;
 import com.wuchenyv1990.mybatis.mapper.GroupMapper;
+import com.wuchenyv1990.mybatis.mapper.UGMapper;
 import com.wuchenyv1990.mybatis.util.Dict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +18,7 @@ public class GroupMgrImpl implements GroupMgr {
     GroupMapper groupMapper;
 
     @Resource
-    UserMgr userMgr;
+    UGMapper ugMapper;
 
     @Override
     @Transactional
@@ -30,6 +30,7 @@ public class GroupMgrImpl implements GroupMgr {
     @Transactional
     public void delGroup(long gid) {
         groupMapper.delGroup(gid);
+        ugMapper.rmGroup(gid);
     }
 
     @Override

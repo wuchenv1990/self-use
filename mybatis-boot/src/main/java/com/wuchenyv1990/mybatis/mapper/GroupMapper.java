@@ -4,6 +4,7 @@ import com.wuchenyv1990.mybatis.entity.Group;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 
@@ -14,6 +15,7 @@ import java.util.Map;
 public interface GroupMapper {
 
     @Insert("INSERT INTO TBL_GROUP(name) VALUES (#{name})")
+    @Options(useGeneratedKeys=true, keyProperty="gid", keyColumn="gid")
     void addGroup(Group group);
 
     @Delete("DELETE FROM TBL_GROUP WHERE gid = #{gid}")

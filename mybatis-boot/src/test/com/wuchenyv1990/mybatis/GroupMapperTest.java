@@ -1,10 +1,7 @@
 package com.wuchenyv1990.mybatis;
 
 import com.wuchenyv1990.mybatis.entity.Group;
-import com.wuchenyv1990.mybatis.entity.User;
-import com.wuchenyv1990.mybatis.manager.itf.UserMgr;
 import com.wuchenyv1990.mybatis.mapper.GroupMapper;
-import com.wuchenyv1990.mybatis.mapper.UserMapper;
 import com.wuchenyv1990.mybatis.util.Dict;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;

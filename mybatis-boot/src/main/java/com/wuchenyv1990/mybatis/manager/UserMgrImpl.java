@@ -26,7 +26,8 @@ public class UserMgrImpl implements UserMgr {
     @Transactional
     public User addUser(User user) {
         userMapper.addUser(user);
-        user.getGids().forEach(gid -> ugMapper.addUG(user.getUid(), gid));
+        user.getGids()
+            .forEach(gid -> ugMapper.addUG(user.getUid(), gid));
         return user;
     }
 
@@ -38,6 +39,7 @@ public class UserMgrImpl implements UserMgr {
             .collect(Collectors.toSet());
         gids.removeAll(user.getGids());
         gids.forEach(gid -> ugMapper.addUG(user.getUid(), gid));
+        user.getGids().addAll(gids);
     }
 
     @Override
@@ -48,6 +50,7 @@ public class UserMgrImpl implements UserMgr {
             .collect(Collectors.toSet());
         gids.retainAll(user.getGids());
         gids.forEach(gid -> ugMapper.rmUG(user.getUid(), gid));
+        user.getGids().removeAll(gids);
     }
 
     @Override
@@ -79,7 +82,11 @@ public class UserMgrImpl implements UserMgr {
     @Override
     @Transactional(readOnly = true)
     public User getUser(String name) {
-        return userMapper.getUsers(Dict.set("name", name)).get(0);
+        User user = userMapper.getUsers(Dict.set("name", name)).get(0);
+        user.setGids(ugMapper.getGids(user.getUid()));
+        return user;
     }
+
+
 
 }

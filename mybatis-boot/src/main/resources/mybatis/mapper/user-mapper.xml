@@ -10,7 +10,7 @@
         <!--<result column="passwd" property="passwd"/>-->
     </resultMap>
 
-    <insert id="addUser" useGeneratedKeys="true" keyProperty="uid">
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="uid" keyColumn="uid">
 	    INSERT INTO TBL_USER
 	    (
 			`name`,

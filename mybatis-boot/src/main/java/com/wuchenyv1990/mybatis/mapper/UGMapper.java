@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * user—group 关系表，多对多
@@ -36,6 +37,6 @@ public interface UGMapper {
     void rmGroup(long gid);
 
     @Select("SELECT gid FROM TBL_USER_TO_GROUP WHERE uid = #{uid}")
-    List<Long> getGids(long uid);
+    Set<Long> getGids(long uid);
 
 }

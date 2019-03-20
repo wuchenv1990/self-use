@@ -1,5 +1,6 @@
 package com.wuchenyv1990.web.controller;
 
+import com.wuchenyv1990.web.common.Result;
 import com.wuchenyv1990.web.security.SecurityConsts;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +16,8 @@ public class ServiceController {
 
     @GetMapping("/test")
     @Secured(SecurityConsts.PERM_R)
-    public Map<String, String> test() {
-        return new HashMap<String, String>() {{
-            put("value", "scv");
-        }};
+    public Result<String> test() {
+        return new Result<String>("svc");
     }
 
 }

@@ -16,6 +16,7 @@ import org.springframework.security.web.authentication.LoginUrlAuthenticationEnt
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.authentication.www.DigestAuthenticationEntryPoint;
+import org.springframework.security.web.authentication.www.DigestAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.util.Arrays;
@@ -30,17 +31,19 @@ public class SecurityConfig {
         @Autowired
         AuthenticationProvider authenticationProvider;
 
+        @Autowired
+        DigestAuthenticationFilter digestAuthenticationFilter;
+
+        @Autowired
+        DigestAuthenticationEntryPoint authenticationEntryPoint;
+
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http
                 .antMatcher("/rest/**")
-                .addFilterAt(
-                    new BasicAuthenticationFilter(
-                        new ProviderManager(Arrays.asList(authenticationProvider))),
-                    BasicAuthenticationFilter.class
-                )
+                .addFilterAt(digestAuthenticationFilter, BasicAuthenticationFilter.class)
                 .exceptionHandling()
-                .authenticationEntryPoint(new DigestAuthenticationEntryPoint())
+                .authenticationEntryPoint(authenticationEntryPoint)
                 .and()
                 .authorizeRequests()
                 .antMatchers("/**")
@@ -51,6 +54,7 @@ public class SecurityConfig {
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {
             auth.authenticationProvider(authenticationProvider);
         }
+
     }
 
     @Configuration
@@ -84,6 +88,23 @@ public class SecurityConfig {
     }
 
     @Bean
+    public DigestAuthenticationFilter digestAuthenticationFilter() {
+        DigestAuthenticationFilter filter = new DigestAuthenticationFilter();
+        filter.setUserDetailsService(userDetailsService());
+        filter.setAuthenticationEntryPoint(digestAuthenticationEntryPoint());
+        return filter;
+    }
+
+    @Bean
+    public DigestAuthenticationEntryPoint digestAuthenticationEntryPoint() {
+        DigestAuthenticationEntryPoint authenticationEntryPoint =
+            new DigestAuthenticationEntryPoint();
+        authenticationEntryPoint.setKey("time");
+        authenticationEntryPoint.setRealmName("uname");
+        return authenticationEntryPoint;
+    }
+
+    @Bean
     public AuthenticationProvider authenticationProvider() {
         return new MockAuthenticationProvider(userDetailsService());
     }
@@ -98,7 +119,7 @@ public class SecurityConfig {
         filter.setUsernameParameter(SecurityConsts.USER_NAME);
         filter.setPasswordParameter(SecurityConsts.PWD);
         filter.setAuthenticationSuccessHandler(new LoginAuthenticationSuccessHandler());
-        filter .setAuthenticationManager(
+        filter.setAuthenticationManager(
             new ProviderManager(Arrays.asList(authenticationProvider())));
         return filter;
     }

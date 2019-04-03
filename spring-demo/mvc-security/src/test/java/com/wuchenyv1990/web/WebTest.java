@@ -16,23 +16,37 @@ import org.apache.http.util.EntityUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.net.URI;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = WebApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
 public class WebTest {
+
+    @LocalServerPort
+    private int port;
 
     RestTemplate restTemplate = new RestTemplate();
 
-    private final String baseUrl = "http://127.0.0.1:8080";
+    private String baseUrl;
+
+    @PostConstruct
+    public void init() {
+        baseUrl = "http://127.0.0.1:" + port;
+    }
 
     @Test
-    public void t1_basic() throws IOException {
+    public void t1_digest() throws IOException {
         CredentialsProvider provider = new BasicCredentialsProvider();
         UsernamePasswordCredentials credentials =
             new UsernamePasswordCredentials("rest", "admin");

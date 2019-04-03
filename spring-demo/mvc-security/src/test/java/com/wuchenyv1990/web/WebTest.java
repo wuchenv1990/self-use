@@ -34,7 +34,7 @@ import java.net.URI;
 public class WebTest {
 
     @LocalServerPort
-    private int port;
+    private int port = 8080;
 
     RestTemplate restTemplate = new RestTemplate();
 
@@ -47,22 +47,12 @@ public class WebTest {
 
     @Test
     public void t1_digest() throws IOException {
-        CredentialsProvider provider = new BasicCredentialsProvider();
-        UsernamePasswordCredentials credentials =
-            new UsernamePasswordCredentials("rest", "admin");
-        provider.setCredentials(AuthScope.ANY, credentials);
-
-        CloseableHttpClient client = HttpClients.custom()
-            .setDefaultCredentialsProvider(provider)
-            .build();
-
-        HttpGet get = new HttpGet(baseUrl + "/rest/test");
-        get.addHeader("Content-type","application/json; charset=utf-8");
-        get.setHeader("Accept", "application/json");
-
-        CloseableHttpResponse response = client.execute(get);
+        CloseableHttpResponse response = executeRequest(
+            "rest",
+            "admin",
+            baseUrl + "/rest/test"
+        );
         HttpEntity entity = response.getEntity();
-
         String rawResult = EntityUtils.toString(entity);
         System.out.println(rawResult);
         Result<String> result = JsonUtils.loadGeneric(
@@ -74,7 +64,42 @@ public class WebTest {
     }
 
     @Test
-    public void t2_from() {
+    public void t2_no_permission() throws IOException {
+        CloseableHttpResponse response = executeRequest(
+            "viewer",
+            "admin",
+            baseUrl + "/rest/test"
+        );
+        HttpEntity entity = response.getEntity();
+        String rawResult = EntityUtils.toString(entity);
+        System.out.println(rawResult);
+        Result<String> result = JsonUtils.loadGeneric(
+            rawResult,
+            new TypeReference<Result<String>>() {
+            }
+        );
+        Assert.assertEquals("rest", result.getData());
+    }
+
+    private CloseableHttpResponse executeRequest(String username, String password, String path)
+        throws IOException {
+        CredentialsProvider provider = new BasicCredentialsProvider();
+        UsernamePasswordCredentials credentials =
+            new UsernamePasswordCredentials(username, password);
+        provider.setCredentials(AuthScope.ANY, credentials);
+
+        CloseableHttpClient client = HttpClients.custom()
+            .setDefaultCredentialsProvider(provider)
+            .build();
+
+        HttpGet get = new HttpGet(path);
+        get.addHeader("Content-type","application/json; charset=utf-8");
+        get.setHeader("Accept", "application/json");
+        return client.execute(get);
+    }
+
+    @Test
+    public void t3_from() {
         ResponseEntity<String> response = restTemplate.postForEntity(
             baseUrl + "/login?username=admin&password=admin",
             null,
@@ -92,6 +117,27 @@ public class WebTest {
             }
         );
         Assert.assertEquals("svc", result.getData());
+    }
+
+    @Test
+    public void t4_from_no_permission() {
+        ResponseEntity<String> response = restTemplate.postForEntity(
+            baseUrl + "/login?username=viewer&password=admin",
+            null,
+            String.class
+        );
+        String session = response.getHeaders().getFirst("Set-Cookie");
+        Assert.assertNotNull(session);
+        RequestEntity entity = RequestEntity.get(URI.create(baseUrl + "/svc/test"))
+            .header(HttpHeaders.COOKIE, session)
+            .build();
+        ResponseEntity<String> getResult = restTemplate.exchange(entity, String.class);
+        Result<String> result = JsonUtils.loadGeneric(
+            getResult.getBody(),
+            new TypeReference<Result<String>>() {
+            }
+        );
+        Assert.assertEquals("/svc/test", result.getMessage());
     }
 
 }

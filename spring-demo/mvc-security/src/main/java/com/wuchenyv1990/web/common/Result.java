@@ -6,6 +6,8 @@ public class Result<T> {
 
     public static final int UNKNOWN = -1;
 
+    public static final int ACCESS_DENY = -2;
+
     public static final Result<Void> ERROR =
         new Result(UNKNOWN, null, "unknown");
 
@@ -22,11 +24,7 @@ public class Result<T> {
         this.data = data;
     }
 
-    public Result(
-        int code,
-        T data,
-        String message
-    ) {
+    public Result(int code, T data, String message) {
         this.code = code;
         this.data = data;
         this.message = message;
@@ -55,4 +53,9 @@ public class Result<T> {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public static <E> Result<E> accessDeny(E data, String message) {
+        return new Result<E>(ACCESS_DENY, data, message);
+    }
+
 }

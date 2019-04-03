@@ -17,19 +17,35 @@ public class MockUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
+        User mockUser = null;
         List<GrantedAuthority> authorityList = new ArrayList<>();
-        authorityList.add(new SimpleGrantedAuthority(SecurityConsts.PERM_REST));
-        authorityList.add(new SimpleGrantedAuthority(SecurityConsts.PERM_ADMIN));
-        authorityList.add(new SimpleGrantedAuthority(SecurityConsts.PERM_R));
-        authorityList.add(new SimpleGrantedAuthority(SecurityConsts.PERM_W));
-
-        User mockUser = new User(
-            username,
-            "admin",
-            authorityList
-        );
-
+        switch (username) {
+            case "admin" :
+                authorityList = new ArrayList<>();
+                authorityList.add(new SimpleGrantedAuthority(SecurityConsts.PERM_ADMIN));
+                authorityList.add(new SimpleGrantedAuthority(SecurityConsts.PERM_R));
+                authorityList.add(new SimpleGrantedAuthority(SecurityConsts.PERM_W));
+                mockUser = new User(
+                    "admin",
+                    "admin",
+                    authorityList
+                );
+                break;
+            case "rest":
+                authorityList.add(new SimpleGrantedAuthority(SecurityConsts.PERM_REST));
+                mockUser = new User(
+                    "rest",
+                    "admin",
+                    authorityList
+                );
+                break;
+            default:
+                mockUser = new User(
+                    username,
+                    "optional",
+                    authorityList
+                );
+        }
         return mockUser;
     }
 }

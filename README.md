@@ -11,6 +11,7 @@ for study (demo, test, etc.)<br>
 │   │   ├──sleuth<br>
 │   │   ├──config-server<br>
 │   │   └──config-client<br>
+│   ├── executable-jar(打包一个可执行jar的pom配置)<br>
 │   └── mvc-security<br>
 │<br>
 ├── dubbo-demo (dubbo项目)<br>

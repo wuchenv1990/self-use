@@ -15,6 +15,7 @@
     <modules>
         <module>cloud</module>
         <module>mvc-security</module>
+        <module>executable-jar</module>
     </modules>
 
     <properties>

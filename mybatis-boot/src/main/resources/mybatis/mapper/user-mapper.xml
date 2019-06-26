@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.wuchenyv1990.mybatis.mapper.UserMapper">
     <resultMap type="com.wuchenyv1990.mybatis.entity.User" id="user">
@@ -22,19 +22,34 @@
 	    )
 	</insert>
 
+    <insert id="addUsers" useGeneratedKeys="true" keyProperty="uid" keyColumn="uid">
+        INSERT INTO TBL_USER
+        (
+        `name`,
+        `passwd`
+        )
+        VALUES
+        <foreach collection="list" item="u" separator=",">
+            (
+            #{u.name},
+            #{u.passwd}
+            )
+        </foreach>
+    </insert>
+
     <delete id="delUser">
-		DELETE FROM TBL_USER
-		 <where>
-             <if test="uid != null">uid = #{uid}</if>
-             <if test="name != null">AND name = #{name}</if>
-         </where>
-	</delete>
+        DELETE FROM TBL_USER
+        <where>
+            <if test="uid != null">uid = #{uid}</if>
+            <if test="name != null">AND name = #{name}</if>
+        </where>
+    </delete>
 
     <update id="chUser">
         UPDATE TBL_USER
         <set>
-          <if test="name != null">name = #{name},</if>
-          <if test="passwd != null">passwd = #{passwd}</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="passwd != null">passwd = #{passwd}</if>
         </set>
         WHERE uid = #{uid}
     </update>

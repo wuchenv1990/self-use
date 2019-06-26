@@ -39,5 +39,4 @@ public class UGMapperTest {
         Assert.assertFalse(ugMapper.getGids(1L).contains(2L));
     }
 
-
 }

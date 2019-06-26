@@ -11,6 +11,8 @@ public interface UserMapper {
 
     void addUser(User user);
 
+    void addUsers(List<User> users);
+
     void delUser(Map<String, ?> params);
 
     void chUser(User user);

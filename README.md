@@ -5,14 +5,17 @@ for study (demo, test, etc.)<br>
 ├── colored-out (控制台彩色输出)<br>
 ├── spring-demo (spring相关项目)<br>
 │   ├── cloud (spring cloud相关项目)<br>
-│   │   ├──eureka-server<br>
-│   │   ├──eureka-client<br>
-│   │   ├──feign-ribbon-hystrix<br>
-│   │   ├──sleuth<br>
-│   │   ├──config-server<br>
-│   │   └──config-client<br>
+│   │   ├── eureka-server<br>
+│   │   ├── eureka-client<br>
+│   │   ├── feign-ribbon-hystrix<br>
+│   │   ├── sleuth<br>
+│   │   ├── config-server<br>
+│   │   └── config-client<br>
 │   ├── executable-jar(打包一个可执行jar的pom配置)<br>
-│   └── mvc-security<br>
+│   ├── mvc-security<br>
+│   └── rabbitmq-boot<br>
+│       ├── rabbitmq-publisher(消息发布)<br>
+│       └── rabbitmq-receiver(消息消费)<br>
 │<br>
 ├── dubbo-demo (dubbo项目)<br>
 │   ├── api (接口)<br>

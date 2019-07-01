@@ -10,12 +10,20 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate.ReturnCallback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+
 @Slf4j
 @Service
 public class MsgSender implements ConfirmCallback, ReturnCallback {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
+
+    @PostConstruct
+    private void init() {
+        rabbitTemplate.setConfirmCallback(this);
+        rabbitTemplate.setReturnCallback(this);
+    }
 
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String cause) {

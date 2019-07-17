@@ -5,6 +5,7 @@ import com.wuchenyv1990.mybatis.mapper.GroupMapper;
 import com.wuchenyv1990.mybatis.util.Dict;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -14,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 
+@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MyBatisAppMain.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)

@@ -7,6 +7,7 @@ import com.wuchenyv1990.mybatis.manager.itf.UserMgr;
 import com.wuchenyv1990.mybatis.mapper.UGMapper;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -17,6 +18,7 @@ import javax.annotation.Resource;
 import java.util.HashSet;
 import java.util.Set;
 
+@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MyBatisAppMain.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)

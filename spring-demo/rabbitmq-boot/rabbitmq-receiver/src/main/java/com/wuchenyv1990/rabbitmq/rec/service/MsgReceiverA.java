@@ -24,6 +24,11 @@ import org.springframework.stereotype.Component;
                 ),
                 @QueueBinding(
                         value = @Queue(value = RecConfig.QUEUE_A),
+                        exchange = @Exchange(value = RecConfig.DIRECT_EXCHANGE),
+                        key = RecConfig.ROUTING_B
+                ),
+                @QueueBinding(
+                        value = @Queue(value = RecConfig.QUEUE_A),
                         exchange = @Exchange(
                                 value = RecConfig.FANOUT_EXCHANGE,
                                 type = ExchangeTypes.FANOUT

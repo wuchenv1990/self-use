@@ -2,6 +2,7 @@ package com.wuchenyv1990.frh;
 
 import com.wuchenyv1990.frh.service.FeighAppService;
 import com.wuchenyv1990.frh.service.RibbonAppService;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.stream.IntStream;
 
+@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = AppCliMain.class)
 public class AppClientTest {

@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: cache-caffeine
+
+cache:
+  caffeine:
+    a:
+      initialCapacity: 5
+      maximumSize: 10
+      expireAfterWrite: 5
+      expireAfterAccess: 5
+

@@ -7,6 +7,6 @@ cache:
     a:
       initialCapacity: 5
       maximumSize: 10
-      expireAfterWrite: 5
+      expireAfterWrite: 3
       expireAfterAccess: 5
 

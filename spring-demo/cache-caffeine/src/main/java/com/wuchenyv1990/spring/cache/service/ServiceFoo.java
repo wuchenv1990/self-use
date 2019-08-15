@@ -13,7 +13,7 @@ public class ServiceFoo {
 
     public String getValue(String key) {
         try {
-            TimeUnit.SECONDS.sleep(random.nextInt(10));
+            TimeUnit.SECONDS.sleep(random.nextInt(3));
         } catch (InterruptedException ignore) {
         }
         return LocalTime.now().toString();

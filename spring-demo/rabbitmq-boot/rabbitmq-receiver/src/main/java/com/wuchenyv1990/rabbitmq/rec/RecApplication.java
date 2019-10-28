@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @EnableRabbit
-public class RecAppplication {
+public class RecApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RecAppplication.class, args);
+        SpringApplication.run(RecApplication.class, args);
     }
 
 }

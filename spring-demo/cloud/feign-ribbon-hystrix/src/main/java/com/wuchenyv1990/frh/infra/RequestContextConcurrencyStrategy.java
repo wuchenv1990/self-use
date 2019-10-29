@@ -107,16 +107,16 @@ public class RequestContextConcurrencyStrategy extends HystrixConcurrencyStrateg
 
         @Override
         public T call() throws Exception {
-            boolean setted = false;
+            boolean set = false;
             try {
                 //信号量隔离不需要操作
                 if (RequestContextHolder.getRequestAttributes() == null) {
                     RequestContextHolder.setRequestAttributes(requestAttributes);
-                    setted = true;
+                    set = true;
                 }
                 return delegate.call();
             } finally {
-                if (setted) {
+                if (set) {
                     RequestContextHolder.resetRequestAttributes();
                 }
             }

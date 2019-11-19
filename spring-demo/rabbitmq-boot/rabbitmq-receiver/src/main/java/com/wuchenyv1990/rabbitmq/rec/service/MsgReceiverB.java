@@ -25,6 +25,19 @@ import org.springframework.stereotype.Component;
                         value = RecConfig.FANOUT_EXCHANGE,
                         type = ExchangeTypes.FANOUT
                 )
+        ),
+        @QueueBinding(
+                value = @Queue(
+                        value = RecConfig.QUEUE_C,
+                        arguments = {
+                                @Argument(name = "x-max-length", value = "10", type = "java.lang.Integer"),
+                                @Argument(name = "x-overflow", value = "reject-publish")
+                        }
+                ),
+                exchange = @Exchange(
+                        value = RecConfig.FANOUT_EXCHANGE,
+                        type = ExchangeTypes.FANOUT
+                )
         )}
 )
 public class MsgReceiverB {

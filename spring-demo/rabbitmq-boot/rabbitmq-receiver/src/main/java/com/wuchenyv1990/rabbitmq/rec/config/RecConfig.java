@@ -10,6 +10,8 @@ public class RecConfig {
 
     public static final String QUEUE_B = "B";
 
+    public static final String QUEUE_C = "C";
+
     public static final String DIRECT_EXCHANGE = "directExchange";
 
     public static final String FANOUT_EXCHANGE = "fanoutExchange";

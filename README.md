@@ -15,9 +15,10 @@ for study (demo, test, etc.)<br>
 │   │   └── config-client<br>
 │   ├── executable-jar(打包一个可执行jar的pom配置)<br>
 │   ├── mvc-security<br>
-│   └── rabbitmq-boot<br>
-│       ├── rabbitmq-publisher(消息发布)<br>
-│       └── rabbitmq-receiver(消息消费)<br>
+│   ├── rabbitmq-boot<br>
+│   │   ├── rabbitmq-publisher(消息发布)<br>
+│   │   └── rabbitmq-receiver(消息消费)<br>
+│   └── spring-kafka<br>
 │<br>
 ├── dubbo-demo (dubbo项目)<br>
 │   ├── api (接口)<br>

@@ -9,14 +9,14 @@ spring-cloud相关<br>
 应用作为eureka-client，即服务发布，通过rest提供api<br>
 全局异常抛出的500为测试feign熔断<br>
 ### 3、feign-ribbon-hystrix
-1. 先后实现feign、ribbon客户端对[2]中eureka-client的调用；
-2. 引入hystrix的feign、ribbon支持；
-3. 开启hystrixDashboard
-4. 引入spring-retry，ribbon开启重试
+1. 先后实现feign、ribbon客户端对[2]中eureka-client的调用；<br>
+2. 引入hystrix的feign、ribbon支持；<br>
+3. 开启hystrixDashboard;<br>
+4. 引入spring-retry，ribbon开启重试<br>
 ### 4、增加sleuth
-增加使用zipkin的sleuth工程，实现链路追踪，并为[2]和[3]添加sleuth支持
+增加使用zipkin的sleuth工程，实现链路追踪，并为[2]和[3]添加sleuth支持<br>
 ### 5、增加config-server/client
-client的@Value注入从server中获取
+client的@Value注入从server中获取<br>
 
 ## 附cloud与boot对应关系：
 Release Train | Boot Version

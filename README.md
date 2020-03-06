@@ -5,7 +5,7 @@ for study (demo, test, etc.)<br>
 ├── colored-out (控制台彩色输出)<br>
 │<br>
 ├── spring-demo (spring相关项目)<br>
-│   ├── cache-caffeine (spring cache)<br>
+│   ├── cache-caffeine (caffeine)<br>
 │   ├── cloud (spring cloud相关项目)<br>
 │   │   ├── eureka-server<br>
 │   │   ├── eureka-client<br>

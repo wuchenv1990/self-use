@@ -11,7 +11,7 @@
     </resultMap>
 
     <insert id="addUser" useGeneratedKeys="true" keyProperty="uid" keyColumn="uid">
-	    INSERT INTO TBL_USER
+	    INSERT INTO `user`
 	    (
 			`name`,
 			`passwd`
@@ -23,7 +23,7 @@
 	</insert>
 
     <insert id="addUsers" useGeneratedKeys="true" keyProperty="uid" keyColumn="uid">
-        INSERT INTO TBL_USER
+        INSERT INTO `user`
         (
         `name`,
         `passwd`
@@ -38,27 +38,27 @@
     </insert>
 
     <delete id="delUser">
-        DELETE FROM TBL_USER
+        DELETE FROM `user`
         <where>
-            <if test="uid != null">uid = #{uid}</if>
-            <if test="name != null">AND name = #{name}</if>
+            <if test="uid != null">`uid` = #{uid}</if>
+            <if test="name != null">AND `name` = #{name}</if>
         </where>
     </delete>
 
     <update id="chUser">
-        UPDATE TBL_USER
+        UPDATE `user`
         <set>
             <if test="name != null">name = #{name},</if>
             <if test="passwd != null">passwd = #{passwd}</if>
         </set>
-        WHERE uid = #{uid}
+        WHERE `uid` = #{uid}
     </update>
 
     <select id="getUsers" parameterType="java.util.HashMap" resultMap="user">
-        SELECT * from TBL_USER u
+        SELECT * from `user` u
         <where>
-            <if test="uid != null">u.uid = #{uid}</if>
-            <if test="name != null">AND u.name = #{name}</if>
+            <if test="uid != null">u.`uid` = #{uid}</if>
+            <if test="name != null">AND u.`name` = #{name}</if>
         </where>
     </select>
 

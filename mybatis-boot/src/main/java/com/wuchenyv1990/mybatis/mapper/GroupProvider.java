@@ -9,7 +9,7 @@ public class GroupProvider {
     public static String getGroups(Map<String, ?> params) {
         return new SQL(){{
             SELECT("*");
-            FROM("TBL_GROUP");
+            FROM("`group`");
             if (params.get("gid") != null) {
                 WHERE(condition("gid"));
             }
@@ -19,7 +19,7 @@ public class GroupProvider {
         }
 
         private String condition(String param) {
-            return String.format("%s = #{%s}", param, param);
+            return String.format("`%s` = #{%s}", param, param);
         }
 
         }.toString();

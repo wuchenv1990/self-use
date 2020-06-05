@@ -1,0 +1,28 @@
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="simple" targetRuntime="MyBatis3Simple">
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/test_mybatis_db?useUnicode=true&amp;characterEncoding=utf-8"
+                        userId="root" password="root"
+        />
+
+        <!--  实体类生成路径  -->
+        <javaModelGenerator targetPackage="com.wuchenyv1990.mybatis.generator.model" targetProject="src/main/java"/>
+
+        <!--  生成xml路径 -->
+        <sqlMapGenerator targetPackage="generator" targetProject="src/main/resources/mybatis"/>
+
+        <!--  生成映射文件路径  -->
+        <javaClientGenerator targetPackage="com.wuchenyv1990.mybatis.generator.mapper" targetProject="src/main/java" type="XMLMAPPER" />
+<!--            <property name="enableSubPackages" value="true" />-->
+<!--        </javaClientGenerator>-->
+
+        <table tableName="user" />
+        <table tableName="group" />
+        <table tableName="user_to_group" />
+
+    </context>
+</generatorConfiguration>

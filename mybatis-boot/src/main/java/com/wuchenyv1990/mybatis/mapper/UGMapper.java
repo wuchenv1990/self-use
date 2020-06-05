@@ -13,10 +13,10 @@ import java.util.Set;
 @Mapper
 public interface UGMapper {
 
-    @Insert("INSERT TBL_USER_TO_GROUP(uid, gid) VALUES (#{uid}, #{gid})")
+    @Insert("INSERT `user_to_group`(uid, gid) VALUES (#{uid}, #{gid})")
     void addUG(long uid, long gid);
 
-    @Delete("DELETE FROM TBL_USER_TO_GROUP WHERE uid = #{uid} AND gid = #{gid}")
+    @Delete("DELETE FROM `user_to_group` WHERE `uid` = #{uid} AND `gid` = #{gid}")
     void rmUG(long uid, long gid);
 
     /**
@@ -24,7 +24,7 @@ public interface UGMapper {
      *
      * @param uid uid
      */
-    @Delete("DELETE FROM TBL_USER_TO_GROUP WHERE uid = #{uid}")
+    @Delete("DELETE FROM `user_to_group` WHERE `uid` = #{uid}")
     void rmUser(long uid);
 
     /**
@@ -32,10 +32,10 @@ public interface UGMapper {
      *
      * @param gid gid
      */
-    @Delete("DELETE FROM TBL_USER_TO_GROUP WHERE gid = #{gid}")
+    @Delete("DELETE FROM `user_to_group` WHERE `gid` = #{gid}")
     void rmGroup(long gid);
 
-    @Select("SELECT gid FROM TBL_USER_TO_GROUP WHERE uid = #{uid}")
+    @Select("SELECT `gid` FROM `user_to_group` WHERE `uid` = #{uid}")
     Set<Long> getGids(long uid);
 
 }

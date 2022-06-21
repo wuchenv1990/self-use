@@ -22,7 +22,7 @@
         <mybatis.boot.version>2.1.2</mybatis.boot.version>
         <mybatis.generator.version>1.4.0</mybatis.generator.version>
         <mybatis.pagehelper-boot.version>1.2.13</mybatis.pagehelper-boot.version>
-        <mysql.driver.version>8.0.15</mysql.driver.version>
+        <mysql.driver.version>8.0.28</mysql.driver.version>
     </properties>
 
     <dependencies>
